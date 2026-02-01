@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Input from "./components/Input";
 import PreviewGrid from "./components/PreviewGrid";
+import FindFaces from "./components/FindFaces";
+
 function App() {
   const [images, setImages] = useState([]);
   const [videos, setVideos] = useState([]);
@@ -19,6 +21,7 @@ function App() {
           <PreviewGrid images={images} />
         </>
       )}
+      {/* <FindFaces images={images} /> */}
     </>
   );
 }

@@ -1,24 +1,7 @@
-import { useEffect, useMemo } from "react";
-
-export default function ImagePreviewGrid({ images }) {
-  const filesWithPreview = useMemo(
-    () =>
-      images.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-      })),
-    [images],
-  );
-
-  useEffect(() => {
-    return () => {
-      filesWithPreview.forEach((item) => URL.revokeObjectURL(item.preview));
-    };
-  }, [filesWithPreview]);
-
+export default function PreviewGrid({ images }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      {filesWithPreview.map(({ file, preview }, index) => (
+      {images.map(({ file, preview }, index) => (
         <div
           key={index}
           className="relative overflow-hidden rounded-xl border border-gray-200 bg-gray-50"
