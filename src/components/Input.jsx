@@ -1,15 +1,19 @@
 import { useRef } from "react";
 
-export default function MediaInput({ handleSelect }) {
+const Input = ({ handleSelect }) => {
   const inputRef = useRef(null);
 
   const handleFiles = (files) => {
     const images = [];
     const videos = [];
-
+    console.log(files);
     Array.from(files).forEach((file) => {
-      if (file.type.startsWith("image/")) images.push(file);
-      if (file.type.startsWith("video/")) videos.push(file);
+      if (file.type.startsWith("image/")) {
+        images.push(URL.createObjectURL(file));
+      }
+      if (file.type.startsWith("video/")) {
+        videos.push(URL.createObjectURL(file));
+      }
     });
 
     handleSelect({ images, videos });
@@ -45,4 +49,6 @@ export default function MediaInput({ handleSelect }) {
       <p className="text-neutral-500">Click or drag & drop files here</p>
     </div>
   );
-}
+};
+
+export default Input;
