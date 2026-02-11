@@ -7,12 +7,20 @@ const Header = () => {
         <h1 className="font-mono text-2xl underline">deFace</h1>
       </div>
       <div className="col-span-4 ml-2 flex justify-between text-center items-center">
-        <p className="text-neutral-700 text-sm">Face censoring app</p>
-        <div className="text-sm font-semibold flex gap-4">
-          <a className=" hover:underline" href="">
+        <p className="text-neutral-700 text-sm">Face Censoring App</p>
+        <div className="text-sm flex gap-4">
+          <a
+            className=" hover:underline"
+            href="https://github.com/MayankRawat1424/DeFace"
+            target="_blank"
+          >
             Git Repository
           </a>
-          <a className=" hover:underline" href="">
+          <a
+            className=" hover:underline"
+            href="https://www.mayankrawat.info/"
+            target="_blank"
+          >
             Contact
           </a>
         </div>
