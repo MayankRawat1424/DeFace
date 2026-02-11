@@ -1,54 +1,49 @@
-import { useRef } from "react";
+import { useState } from "react";
 
-const Input = ({ handleSelect }) => {
-  const inputRef = useRef(null);
+export default function MultiImageInput({ setImages, images }) {
+  const [flag, setFlag] = useState(false);
 
-  const handleFiles = (files) => {
-    const images = [];
-    const videos = [];
-    console.log(files);
-    Array.from(files).forEach((file) => {
-      if (file.type.startsWith("image/")) {
-        images.push(URL.createObjectURL(file));
-      }
-      if (file.type.startsWith("video/")) {
-        videos.push(URL.createObjectURL(file));
-      }
-    });
-
-    handleSelect({ images, videos });
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImages(files);
   };
 
-  const onChange = (e) => {
-    handleFiles(e.target.files);
-    e.target.value = null; // allow re-upload same file
-  };
-
-  const onDrop = (e) => {
-    e.preventDefault();
-    handleFiles(e.dataTransfer.files);
+  const handleClick = () => {
+    setFlag((prev) => !prev);
   };
 
   return (
-    <div
-      onDrop={onDrop}
-      onDragOver={(e) => e.preventDefault()}
-      onClick={() => inputRef.current.click()}
-      className="border-2 border-dashed border-neutral-500 hover:cursor-pointer text-center py-16 w-3/5 mx-auto rounded-lg"
-    >
-      <input
-        ref={inputRef}
-        type="file"
-        multiple
-        accept="image/*,video/*"
-        hidden
-        onChange={onChange}
-      />
+    <div className=" grid grid-cols-5 mx-4">
+      <div className="col-span-1 mr-2">
+        <button
+          className="bg-amber-200 py-2 px-4 w-full  hover:bg-amber-300 hover:cursor-pointer"
+          onClick={() => {
+            handleClick();
+          }}
+        >
+          Total Images: {images.length}
+        </button>
 
-      <p className="mb-2 text-2xl">Upload Images or Videos</p>
-      <p className="text-neutral-500">Click or drag & drop files here</p>
+        {!flag ? (
+          <></>
+        ) : (
+          images.map((file, index) => (
+            <p className="mx-2 my-2 text-sm" key={index}>
+              <strong>{index + 1} : </strong>
+              {file.name}
+            </p>
+          ))
+        )}
+      </div>
+      <div className="col-span-4 ml-2">
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={handleImageChange}
+          className="px-16 py-8 w-3xl border-2 border-neutral-500 border-dashed hover:cursor-pointer text-center rounded-sm"
+        />
+      </div>
     </div>
   );
-};
-
-export default Input;
+}

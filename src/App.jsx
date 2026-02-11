@@ -1,27 +1,16 @@
 import { useState } from "react";
 import Input from "./components/Input";
-import PreviewGrid from "./components/PreviewGrid";
-import FindFaces from "./components/FindFaces";
+import Header from "./components/Header";
+import Preview from "./components/Preview";
 
 function App() {
   const [images, setImages] = useState([]);
-  const [videos, setVideos] = useState([]);
-
-  const handleSelect = ({ images, videos }) => {
-    setImages(images);
-    setVideos(videos);
-  };
 
   return (
     <>
-      <Input handleSelect={handleSelect} />
-      {(images.length > 0 || videos.length > 0) && (
-        <>
-          <h3 className="mt-8 mb-4 text-lg font-semibold">Image Preview</h3>
-          <PreviewGrid images={images} />
-        </>
-      )}
-      {/* <FindFaces images={images} /> */}
+      <Header />
+      <Preview />
+      <Input images={images} setImages={setImages} />
     </>
   );
 }
