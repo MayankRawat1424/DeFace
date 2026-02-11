@@ -6,6 +6,7 @@ export default function MultiImageInput({ setImages, images }) {
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     setImages(files);
+    console.log(images);
   };
 
   const handleClick = () => {
@@ -24,18 +25,18 @@ export default function MultiImageInput({ setImages, images }) {
           Total Images: {images.length}
         </button>
 
-        {!flag ? (
-          <></>
-        ) : (
-          images.map((file, index) => (
-            <p className="mx-2 my-2 text-sm" key={index}>
-              <strong>{index + 1} : </strong>
-              {file.name}
-            </p>
-          ))
+        {flag && (
+          <div className="overflow-scroll">
+            {images.map((file, index) => (
+              <p className="mx-2 my-2 text-sm" key={index}>
+                <strong>{index + 1} : </strong>
+                {file.name}
+              </p>
+            ))}
+          </div>
         )}
       </div>
-      <div className="col-span-4 ml-2">
+      <div className="col-span-4 ml-2 flex justify-center h-fit">
         <input
           type="file"
           accept="image/*"
