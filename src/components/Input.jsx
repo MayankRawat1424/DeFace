@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function MultiImageInput({ setImages, images }) {
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(true);
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
@@ -14,10 +14,10 @@ export default function MultiImageInput({ setImages, images }) {
   };
 
   return (
-    <div className=" grid grid-cols-5 mx-4">
-      <div className="col-span-1 mr-2">
+    <div className="bg-amber-200 grid grid-cols-5 px-4 pt-16 pb-16">
+      <div className="col-span-1 mr-2 border-neutral-700 border-2">
         <button
-          className="bg-amber-200 py-2 px-4 w-full  hover:bg-amber-300 hover:cursor-pointer"
+          className="bg-neutral-800 text-white py-2 px-4 w-full  hover:shadow-lg hover:cursor-pointer"
           onClick={() => {
             handleClick();
           }}
@@ -42,7 +42,7 @@ export default function MultiImageInput({ setImages, images }) {
           accept="image/*"
           multiple
           onChange={handleImageChange}
-          className="px-16 py-8 w-3xl border-2 border-neutral-500 border-dashed hover:cursor-pointer text-center rounded-sm"
+          className="px-16 py-8 w-3xl border-2 border-neutral-500 border-dashed hover:cursor-pointer text-center "
         />
       </div>
     </div>
